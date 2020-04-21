@@ -26,10 +26,21 @@ sudo python setup.py install
 ## [Optional] Database
 We can setup our pi to store our data on persistent storage.
 ```
-sudo apt install mariadb-server php-mysql
-sudo phpenmod mysqli
+sudo apt install mariadb-server
 sudo service apache2 restart
 sudo mysql_secure_installation
+```
+
+We can now set up our database. We log in to the mysql command line using our root account.
+```
+sudo mysql -u root -p
+```
+
+In the mysql command line we can create the databaase and the table.
+```
+CREATE DATABASE goniometer;
+USE goniometer;
+CREATE TABLE readings(dtg text NOT NULL, angle text NOT NULL, name text);
 ```
 
 We also need to install the python library to connect to the mysql database.
