@@ -75,7 +75,7 @@ print '</body>'
 print '</html>'
 ```
 
-To see the full code refer to [this].
+To see the full code refer to [this](https://github.com/ece4180/ece4180.github.io/blob/master/recordadc.cgi).
 
 We also need to enable cgi, make it executable and restart our webserver.
 ```
