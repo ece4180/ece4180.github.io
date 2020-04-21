@@ -88,8 +88,7 @@ We then define the measure method.
         pattern = re.compile("[a-z ]+")
         if !pattern.fullmatch(name):
             return "Use only letters and spaces"
-        adc = Adafruit_ADS1x15.ADS1115()
-        reading = adc.read_adc(0, gain=1)
+        reading = stable_reading() if type == "static" else max_reading()
         dtg = time.strftime('%Y-%m-%d %H:%M:%S, time.localtime())
         print 'Local current time:', dtg
         print 'flex value:', reading
@@ -109,6 +108,28 @@ We then define the measure method.
             conn.close()
             
         return "name: " + name + "reading:" str(reading)
+```
+
+To take measurements
+```
+    def stable_reading(self):
+        adc = Adafruit_ADS1x15.ADS1115()
+        readings = list()
+        for i in range(10):
+            reading = adc.read_adc(0, gain=1)
+            readings.append(reading)
+            time.sleep(0.125)
+        return sum(readings) / len(readings)
+        
+    def max_reading(self):
+        adc = Adafruit_ADS1x15.ADS1115()
+        readings = list()
+        # for 6.25 seconds
+        for i in range(200):
+            reading = adc.read_adc(0, gain=1)
+            readings.append(reading)
+            time.sleep(0.03125)
+        return max(readings)
 ```
 
 Then we write the main program.
