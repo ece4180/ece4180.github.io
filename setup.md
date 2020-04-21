@@ -1,5 +1,4 @@
 # Setup
-## [Optional] Database
 ## Webserver
 We recommend running the webserver using the apache2 or nginx. The following set up instructions is for apache2.
 ```
@@ -23,3 +22,53 @@ git clone https://github.com/adafruit/Adafruit_Python_ADS1x15
 cd Adafruit_Python_ADS1x15
 sudo python setup.py install
 ```
+
+## [Optional] Database
+We can setup our pi to store our data on persistent storage.
+```
+sudo apt install mariadb-server php-mysql
+sudo phpenmod mysqli
+sudo service apache2 restart
+sudo mysql_secure_installation
+```
+
+We also need to install the python library to connect to the mysql database.
+```
+sudo apt-get install libmariadbclient-dev
+pip install mysql-connector
+```
+
+Firstly, we need to import the relevant libraries.
+```
+import time
+import Adafruit_ADS1x15
+import mysql.connector as mariadb
+```
+
+We then initialise the ADC component, take a reading and get the current time.
+```
+adc = Adafruit_ADS1x15.ADS1115()
+reading = adc.read_adc(0, gain=1)
+dtg = time.strftime('%Y-%m-%d %H:%M:%S, time.localtime())
+```
+
+We then print the info we are adding and attempt to add it into the database.
+```
+print 'Local current time:', dtg
+print 'flex value:', reading
+
+try:
+    conn = mariadb.connect(user='root', password='', database='goniometer')
+    cursor = conn.cursor()
+    cursor.execute('''INSERT INTO readings(dtg, angle, name) VALUES(%s,%s,%s)''', (dtg,reading,name))
+    conn.commit()
+except mariadb.Error as error:
+    print 'Error: {}'.format(error)
+```
+
+We then check that the id has changed and close the connection.
+```
+finally:
+    print 'The last inserted id was:', cursor.lastrowid
+    conn.close()
+````
