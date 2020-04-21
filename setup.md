@@ -24,6 +24,7 @@ sudo python setup.py install
 ```
 
 ## [Optional] Database
+### Setting up
 We can setup our pi to store our data on persistent storage.
 ```
 sudo apt install mariadb-server
@@ -49,6 +50,7 @@ sudo apt-get install libmariadbclient-dev
 pip install mysql-connector
 ```
 
+### Code
 Firstly, we need to import the relevant libraries.
 ```
 import time
@@ -83,3 +85,5 @@ finally:
     print 'The last inserted id was:', cursor.lastrowid
     conn.close()
 ````
+
+### Linking to a webpage
