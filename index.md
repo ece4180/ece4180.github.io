@@ -85,3 +85,6 @@ systemctl restart apache2
 ```
 
 The readings should now be avaliable at ```[ip address]/cgi-bin/recordadc.cgi``` on the same network.
+
+### If we want readings to be saved we can use a mysql db
+Please see [here](https://github.com/ece4180/ece4180.github.io/blob/master/setup.md#optional-database) for full instructions.
