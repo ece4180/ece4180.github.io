@@ -31,5 +31,10 @@ The following are the components used to built this project:
 * ADC Convertor
 
 ### Main Program
+---
+**NOTE**
 
+If your raspberry pi has not been set up with the correct libraries, please see [how to setup the rpi.](https://github.com/ece4180/ece4180.github.io/blob/master/setup.md)
+
+---
 *Explantion of Code*
