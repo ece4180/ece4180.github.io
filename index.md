@@ -11,7 +11,7 @@ youtubeId: ybji16u608U
 
 ### Introduction
 
-The IoT Goniometer is a relatively small device which uses a goniometer to measure a joint's function such as an elbow or a knee, based on their degree of movement. The measurements collected will then be uploaded to the internet using the Raspberry PI Zero.
+The IoT Goniometer is a device which uses a goniometer to measure a joint's function such as an elbow or a knee, based on their degree of movement. The measurements collected will then be uploaded to the internet using the Raspberry PI Zero.
 
 ### Motivation
 
