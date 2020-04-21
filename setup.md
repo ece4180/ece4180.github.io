@@ -50,40 +50,71 @@ sudo apt-get install libmariadbclient-dev
 pip install mysql-connector
 ```
 
-### Code
-Firstly, we need to import the relevant libraries.
-```
+### Linking to a webpage
+We will use the CherryPy framework for this.
+```sudo pip install cherrypy```
+
+Import the library
+```python
+import cherrypy
 import time
 import Adafruit_ADS1x15
 import mysql.connector as mariadb
+import re
 ```
 
-We then initialise the ADC component, take a reading and get the current time.
-```
-adc = Adafruit_ADS1x15.ADS1115()
-reading = adc.read_adc(0, gain=1)
-dtg = time.strftime('%Y-%m-%d %H:%M:%S, time.localtime())
-```
-
-We then print the info we are adding and attempt to add it into the database.
-```
-print 'Local current time:', dtg
-print 'flex value:', reading
-
-try:
-    conn = mariadb.connect(user='root', password='', database='goniometer')
-    cursor = conn.cursor()
-    cursor.execute('''INSERT INTO readings(dtg, angle, name) VALUES(%s,%s,%s)''', (dtg,reading,name))
-    conn.commit()
-except mariadb.Error as error:
-    print 'Error: {}'.format(error)
+Define the class and expose a method for reading new data.
+```python
+class Geoniometer(object):
+    @cherrypy.expose
+    def index(self):
+    return """<html>
+    <head>Goniometer</head>
+    <body>
+        <form method="get" action="measure">
+            <input type="text" name="Name"/>
+            <button type="submit">Get reading for patient</button>
+        </form>
+    </body>
+</html>"""
 ```
 
-We then check that the id has changed and close the connection.
-```
-finally:
-    print 'The last inserted id was:', cursor.lastrowid
-    conn.close()
-````
+We then define the measure method.
+```python
+    @cherrypy.expose
+    def measure(self, name="Test Name"):
+        # guard clause against malicious input
+        name = name.tolower()
+        pattern = re.compile("[a-z ]+")
+        if !pattern.fullmatch(name):
+            return "Use only letters and spaces"
+        adc = Adafruit_ADS1x15.ADS1115()
+        reading = adc.read_adc(0, gain=1)
+        dtg = time.strftime('%Y-%m-%d %H:%M:%S, time.localtime())
+        print 'Local current time:', dtg
+        print 'flex value:', reading
 
-### Linking to a webpage
+        try:
+            # open the connection and execute query
+            conn = mariadb.connect(user='root', password='', database='goniometer')
+            cursor = conn.cursor()
+            cursor.execute('''INSERT INTO readings(dtg, angle, name) VALUES(%s,%s,%s)''', (dtg,reading,name))
+            # commit change
+            conn.commit()
+        except mariadb.Error as error:
+            print 'Error: {}'.format(error)
+        finally:
+            # close connection
+            print 'The last inserted id was:', cursor.lastrowid
+            conn.close()
+            
+        return "name: " + name + "reading:" str(reading)
+```
+
+Then we write the main program.
+```python
+if __name__ == '__main__':
+    cherrypy.quickstart(Goniometer())
+```
+
+For full code refer [here](https://github.com/ece4180/ece4180.github.io/blob/master/recorddb.py).
