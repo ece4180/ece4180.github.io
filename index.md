@@ -26,7 +26,7 @@ Currently, there is a physical/analog goniometer which only take static measurem
 
 The following are the components used to built this project:
 * Goniometer
-* Flax Sensor
+* [Flex Sensor](https://os.mbed.com/components/Flex-Sensor/)
 * Raspberry Pi Zero
 * ADC Convertor
 
