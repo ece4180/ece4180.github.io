@@ -1,13 +1,17 @@
 # Setup
 ## [Optional] Database
 ## Webserver
-## ADS 1115
-To set up the raspberry pi to use the i2c sensor, we need to ensure it is up to date and configured to use the i2c protocol.
+We recommend running the webserver using the apache2 or nginx. The following set up instructions is for apache2.
 ```
 sudo apt-get update
 sudo apt-get upgrade
+sudo apt install apache2
 ```
-We can use the gui to enable the i2c protocol. Afterward we need to check the ```/etc/modules``` file contains the following line at the end of file.
+
+We can view our ip-address using ```hostname -I```
+
+## ADS 1115
+To set up the raspberry pi to use the i2c sensor, we can use the gui to enable the i2c protocol. Afterward we need to check that the ```/etc/modules``` file contains the following line at the end of file.
 ```i2c-dev```
 Remember to reboot after enabling the i2c protocol.
 Use ```sudo i2cdetect -y 1``` to ensure it is working. It will show the address where the ADS is detected.
