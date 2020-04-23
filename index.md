@@ -34,7 +34,7 @@ The following are the components used to built this project:
 ---
 **NOTE**
 
-If your raspberry pi has not been set up with the correct libraries, please see [how to setup the rpi.](https://github.com/ece4180/ece4180.github.io/blob/master/setup.md)
+If your raspberry pi has not been set up with the correct libraries, please see [how to setup the rpi.](/setup.md)
 
 ---
 *Explantion of Code*
@@ -87,4 +87,4 @@ systemctl restart apache2
 The readings should now be avaliable at ```[ip address]/cgi-bin/recordadc.cgi``` on the same network.
 
 ### If we want readings to be saved we can use a mysql db
-Please see [here](https://github.com/ece4180/ece4180.github.io/blob/master/setup.md#optional-database) for full instructions.
+Please see [here](/setup.md#optional-database) for full instructions.
