@@ -28,11 +28,11 @@ class Goniometer(object):
     @cherrypy.expose
     def measure(self, Name="Test Name", type="static"):
         # guard clause against malicious input
-        name = name.tolower()
+        name = Name.lower()
         pattern = re.compile("[a-z ]+")
         if not pattern.fullmatch(name):
             return "Use only letters and spaces"
-        reading = stable_reading() if type == "static" else max_reading()
+        reading = Goniometer.stable_reading() if type == "static" else Goniometer.max_reading()
         dtg = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
         print('Local current time:', dtg)
         print('flex value:', reading)
@@ -53,7 +53,8 @@ class Goniometer(object):
 
         return "name: " + name + "reading:" + str(reading)
 
-    def stable_reading(self):
+    @staticmethod
+    def stable_reading():
         adc = Adafruit_ADS1x15.ADS1115()
         readings = list()
         for i in range(10):
@@ -62,7 +63,8 @@ class Goniometer(object):
             time.sleep(0.125)
         return sum(readings) / len(readings)
 
-    def max_reading(self):
+    @staticmethod
+    def max_reading():
         adc = Adafruit_ADS1x15.ADS1115()
         readings = list()
         # for 6.25 seconds
