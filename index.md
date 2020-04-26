@@ -5,9 +5,9 @@ youtubeId: ybji16u608U
 
 # IoT Goniometer
 
-## ECE4180 Spring 2020 Final Project 
+## ECE4180 Spring 2020 Final Project
 
-## Project Members: Emily Watson, Joseph Malone, Jeremy Kwok, Kenneth Chua
+## Project Members: Emily Wilson, Joseph Malone, Jeremy Kwok, Kenneth Chua
 
 ### Introduction
 

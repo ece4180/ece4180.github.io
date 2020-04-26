@@ -7,22 +7,26 @@ import re
 class Goniometer(object):
     @cherrypy.expose
     def index(self):
-   	 return """<html>
-    		<head>Goniometer</head>
-    		<body>
-        		<form method="get" action="measure">
-           	 		<input type="text" name="Name"/>
-            			<button type="submit">Get reading for patient</button>
-            			<input type="radio" id="static" name="type" value="static">
-            			<label for="static">Static</label><br>
-            			<input type="radio" id="dynamic" name="type" value="dynamic">
-            			<label for="dynamic">Dynamic</label><br>
-        		</form>
-    		</body>
-		</html>"""
+        return """<html>
+            <head>
+                <h1>Goniometer</h1>
+            </head>
+            <body>
+                <form method="get" action="measure">
+                    <div>
+                        <input type="radio" id="static" name="type" value="static">
+                        <label for="static">Static</label><br>
+                        <input type="radio" id="dynamic" name="type" value="dynamic">
+                        <label for="dynamic">Dynamic</label><br>
+                    </div>
+                    <input type="text" name="Name"/>
+                    <button type="submit">Get reading for patient</button>
+                </form>
+            </body>
+        </html>"""
 
     @cherrypy.expose
-    def measure(self, name="Test Name", type="static"):
+    def measure(self, Name="Test Name", type="static"):
         # guard clause against malicious input
         name = name.tolower()
         pattern = re.compile("[a-z ]+")
@@ -35,7 +39,7 @@ class Goniometer(object):
 
         try:
             # open the connection and execute query
-            conn = mariadb.connect(user='root', password='', database='goniometer')
+            conn = mariadb.connect(user='root', password='4180', database='goniometer')
             cursor = conn.cursor()
             cursor.execute('''INSERT INTO readings(dtg, angle, name) VALUES(%s,%s,%s)''', (dtg,reading,name))
             # commit change
@@ -46,9 +50,9 @@ class Goniometer(object):
             # close connection
             print('The last inserted id was:', cursor.lastrowid)
             conn.close()
-            
+
         return "name: " + name + "reading:" + str(reading)
-                            
+
     def stable_reading(self):
         adc = Adafruit_ADS1x15.ADS1115()
         readings = list()
@@ -57,7 +61,7 @@ class Goniometer(object):
             readings.append(reading)
             time.sleep(0.125)
         return sum(readings) / len(readings)
-        
+
     def max_reading(self):
         adc = Adafruit_ADS1x15.ADS1115()
         readings = list()
@@ -67,7 +71,7 @@ class Goniometer(object):
             readings.append(reading)
             time.sleep(0.03125)
         return max(readings)
-        
+
 if __name__ == '__main__':
     cherrypy.config.update({'server.socket_host': '192.168.1.148'})
     cherrypy.quickstart(Goniometer())

@@ -10,17 +10,26 @@ sudo apt install apache2
 We can view our ip-address using ```hostname -I```
 
 ## ADS 1115
-To set up the raspberry pi to use the i2c sensor, we can use the gui to enable the i2c protocol. Afterward we need to check that the **/etc/modules** file contains the following line at the end of file.
+To set up the raspberry pi to use the i2c sensor, we can use the gui to enable the i2c protocol.
+First we need to install the i2ctools package.
+```
+sudo apt-get update
+sudo apt-get install i2ctools
+```
+Afterward we need to check that the **/etc/modules** file contains the following line at the end of file.
 ```
 i2c-dev
 ```
-Remember to reboot after enabling the i2c protocol. To ensure it is working. 
+Next, enable i2c in the boot configuration by uncommenting the line: `dtparam=i2c_arm=on`.
+Remember to reboot after enabling the i2c protocol. To ensure it is working.
 ```
 sudo i2cdetect -y 1
 ```
 
-We need to download the library for our ADS ADC.
+We need to download the library for our ADS ADC. When using python and pip, make sure to use python3 and pip3
 ```
+sudo apt-get install python-pip
+python -m pip install --upgrade pip setuptools wheel
 sudo apt-get install git build-essential python-dev python-smbus
 git clone https://github.com/adafruit/Adafruit_Python_ADS1x15
 cd Adafruit_Python_ADS1x15
@@ -41,7 +50,7 @@ We can now set up our database. We log in to the mysql command line using our ro
 sudo mysql -u root -p
 ```
 
-In the mysql command line we can create the databaase and the table.
+In the mysql command line we can create the database and the table.
 ```
 CREATE DATABASE goniometer;
 USE goniometer;
@@ -69,7 +78,7 @@ import re
 
 Define the class and expose a method for reading new data.
 ```python
-class Geoniometer(object):
+class Goniometer(object):
     @cherrypy.expose
     def index(self):
     return """<html>
@@ -110,7 +119,7 @@ We then define the measure method.
             # close connection
             print 'The last inserted id was:', cursor.lastrowid
             conn.close()
-            
+
         return "name: " + name + "reading:" str(reading)
 ```
 
@@ -124,7 +133,7 @@ To take measurements
             readings.append(reading)
             time.sleep(0.125)
         return sum(readings) / len(readings)
-        
+
     def max_reading(self):
         adc = Adafruit_ADS1x15.ADS1115()
         readings = list()
