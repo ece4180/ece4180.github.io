@@ -3,6 +3,7 @@ import time
 import Adafruit_ADS1x15
 import mysql.connector as mariadb
 import re
+import math
 from jinja2 import Environment, FileSystemLoader
 
 env = Environment(loader=FileSystemLoader('templates'))
@@ -53,7 +54,7 @@ class Goniometer(object):
             reading = adc.read_adc(0, gain=1)
             readings.append(reading)
             time.sleep(0.125)
-        return sum(readings) / len(readings)
+        return Goniometer.get_angle(sum(readings) / len(readings))
 
     @staticmethod
     def max_reading():
@@ -64,7 +65,11 @@ class Goniometer(object):
             reading = adc.read_adc(0, gain=1)
             readings.append(reading)
             time.sleep(0.03125)
-        return max(readings)
+        return Goniometer.get_angle(max(readings))
+
+    @staticmethod
+    def get_angle(x):
+        return 49.9 + (219 * math.log10(x)) - 269 * (math.log10(x) ** 2)
 
 if __name__ == '__main__':
     cherrypy.config.update({'server.socket_host': '192.168.1.148'})
