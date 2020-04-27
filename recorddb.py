@@ -21,7 +21,7 @@ class Goniometer(object):
         pattern = re.compile("[a-z ]+")
         if not pattern.fullmatch(name):
             return "Use only letters and spaces"
-        reading = Goniometer.stable_reading() if type == "static" else Goniometer.max_reading()
+        reading = Goniometer.stable_reading() if type == "static" else Goniometer.dynamic_reading()
         dtg = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
         print('Local current time:', dtg)
         print('flex value:', reading)
@@ -58,15 +58,15 @@ class Goniometer(object):
         return Goniometer.get_angle(sum(readings) / len(readings))
 
     @staticmethod
-    def max_reading():
+    def dynamic_reading():
         adc = Adafruit_ADS1x15.ADS1115()
         readings = list()
         # for 6.25 seconds
         for i in range(200):
             reading = adc.read_adc(0, gain=1)
-            readings.append(reading)
+            readings.append(get_angle(reading))
             time.sleep(0.03125)
-        return Goniometer.get_angle(max(readings))
+        return readings
 
     @staticmethod
     def get_angle(x):
@@ -79,8 +79,7 @@ class HistoryPage(object):
         try:
             conn = mariadb.connect(user='root', password='4180', database='goniometer')
             cursor = conn.cursor()
-            cursor.execute('''SELECT * FROM readings ORDER BY dtg LIMIT 20''')
-            print(result)
+            cursor.execute('''SELECT * FROM readings ORDER BY dtg DESC LIMIT 20''')
             return temp.render(entries=cursor)
         except mariadb.Error as error:
             print('Error: {}'.format(error))

@@ -1,5 +1,13 @@
 <html>
-  <h1>{% Name %}</h1>
+  <head>
+    <title>Goniometer - Dynamic Measurement</title>
+    <h1>Goniometer</h1>
+    <span>
+      <a href="/history">Previous Measurements</a>
+      <a href="/">Measure</a>
+    </span>
+  </head>
+  <h1>{{ Name }}</h1>
   <p>Readings</p>
   {% for reading in readings %}
     <li>{{ reading }}</li>

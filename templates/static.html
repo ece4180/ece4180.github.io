@@ -5,9 +5,26 @@
     <style>
       * {
         font-family: 'Roboto';
+        background-color: "#203152";
+      }
+
+      button {
+        border: none;
+        padding: 15px 32px;
+        background-color: "#639ECB";
       }
     </style>
+    <h1>Goniometer</h1>
+    <span>
+      <a href="/history">Previous Measurements</a>
+      <a href="/">Measure</a>
+    </span>
   </head>
   <h1>{{ Name }}</h1>
   <p>{{ reading }} degrees</p>
+  <form method="get" action="measure">
+    <input type="radio" name="type" id="static" value="static" />
+    <input type="text" name="Name" id="Name" value="{{ Name }}" />
+    <button type="submit">Record another measurement</button>
+  </form>
 </html>

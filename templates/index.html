@@ -6,11 +6,26 @@
     <style>
       * {
         font-family: 'Roboto';
+        background-color: "#203152";
       }
 
-      .submit-button {
+      .header {
+        background-color: "#1C221F";
+      }
+
+      .header-item {
+        background-color: "#203152";
+        color: "#E8E0D6";
+      }
+
+      .header-item:active {
+        background-color: "#397EC0";
+      }
+
+      button {
         border: none;
         padding: 15px 32px;
+        background-color: "#639ECB";
       }
 
       .container {
@@ -34,18 +49,18 @@
         left: 0;
         height: 25px;
         width: 25px;
-        background-color: "gray";
+        background-color: "#828C94";
         border-radius: 50%;
       }
 
       /* On mouse over change bg color */
       .container:hover input ~ .checkmark {
-        background-color: "gray";
+        background-color: "#828C94";
       }
 
       /* add bg when radio button is checked */
       .container input:checked ~ .checkmark {
-        background-color: "blue"
+        background-color: "#639ECB"
       }
 
       .checkmark:after {
@@ -64,13 +79,13 @@
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background: white;
+        background: "#E8E0D6";
       }
     </style>
     <h1>Goniometer</h1>
-    <span>
-      <a href="/history">Previous Measurements</a>
-      <a href="/">Measure</a>
+    <span class="header">
+      <a class="header-item" href="/history">Previous Measurements</a>
+      <a class="header-item" href="/">Measure</a>
     </span>
   </head>
   <body>
