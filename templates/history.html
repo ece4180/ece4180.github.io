@@ -8,11 +8,11 @@
       <th>Angle</th>
       <th>Recorded At</th>
     </tr>
-  {% for entry in entries %}
+  {% for dtg, angle, name in entries %}
     <tr>
-      <td>{{ entry.name }}</td>
-      <td>{{ entry.angle }}</td>
-      <td>{{ entry.dtg }}</td>
+      <td>{{ name }}</td>
+      <td>{{ angle }}</td>
+      <td>{{ dtg }}</td>
     </tr>
   {% endfor %}
   </table>

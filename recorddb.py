@@ -77,13 +77,14 @@ class HistoryPage(object):
     def index(self):
         temp = env.get_template('history.html');
         try:
-            conn = mariadb.connection(user='root', password='4180', database='goniometer')
+            conn = mariadb.connect(user='root', password='4180', database='goniometer')
             cursor = conn.cursor()
-            result = cursor.execute('''SELECT * FROM readings ORDER BY dtg LIMIT 20''')
+            cursor.execute('''SELECT * FROM readings ORDER BY dtg LIMIT 20''')
             print(result)
+            return temp.render(entries=cursor)
         except mariadb.Error as error:
             print('Error: {}'.format(error))
-        return temp.render()
+        return temp.render(cursor)
 
 
 root = Goniometer()
