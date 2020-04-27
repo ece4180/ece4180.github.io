@@ -6,8 +6,17 @@
         font-family: 'Roboto';
       }
 
+      body {
+        margin: 0px;
+      }
+
+      .content {
+        margin: 8px;
+      }
+
       .header {
         background-color: #203152;
+        padding: 8px;
         color: #fff;
       }
 
@@ -38,19 +47,21 @@
       <a class="header-item" href="/">Measure</a>
     </span>
   </head>
-  <h2>Previous Measurements</h2>
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Angle</th>
-      <th>Recorded At</th>
-    </tr>
-  {% for dtg, angle, name in entries %}
-    <tr>
-      <td>{{ name }}</td>
-      <td>{{ angle }}</td>
-      <td>{{ dtg }}</td>
-    </tr>
-  {% endfor %}
-  </table>
+  <div class="content">
+    <h2>Previous Measurements</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Angle</th>
+        <th>Recorded At</th>
+      </tr>
+    {% for dtg, angle, name in entries %}
+      <tr>
+        <td>{{ name }}</td>
+        <td>{{ angle }}</td>
+        <td>{{ dtg }}</td>
+      </tr>
+    {% endfor %}
+    </table>
+  </div>
 </html>
