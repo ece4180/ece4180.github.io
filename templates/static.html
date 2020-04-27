@@ -5,6 +5,9 @@
     <style>
       * {
         font-family: 'Roboto';
+      }
+
+      .content {
         background-color: #E8E0D6;
       }
 
@@ -33,11 +36,13 @@
       </span>
     </div>
   </head>
-  <h1>{{ Name }}</h1>
-  <p>{{ reading }} degrees</p>
-  <form method="get" action="measure">
-    <input type="radio" name="type" id="static" value="static" />
-    <input type="text" name="Name" id="Name" value="{{ Name }}" />
-    <button type="submit">Record another measurement</button>
-  </form>
+  <div class="content">
+    <h2>Static Goniometer reading for {{ Name }}</h2>
+    <p>{{ reading }} degrees</p>
+    <form method="get" action="measure">
+      <input type="radio" name="type" id="static" value="static" />
+      <input type="text" name="Name" id="Name" value="{{ Name }}" />
+      <button type="submit">Record another measurement</button>
+    </form>
+  </div>
 </html>

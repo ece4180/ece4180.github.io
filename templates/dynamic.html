@@ -4,6 +4,9 @@
     <style>
       * {
         font-family: 'Roboto';
+      }
+
+      .content {
         background-color: #E8E0D6;
       }
 
@@ -27,9 +30,11 @@
       </span>
     </div>
   </head>
-  <h1>{{ Name }}</h1>
-  <p>Readings</p>
-  {% for reading in readings %}
-    <li>{{ reading }}</li>
-  {% endfor %}
+  <div class="content">
+    <h2>Dynamic Goniometer readings for {{ Name }}</h2>
+    <p>Readings</p>
+    {% for reading in readings %}
+      <li>{{ reading }}</li>
+    {% endfor %}
+  </div>
 </html>
