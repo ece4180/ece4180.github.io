@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet"
+        href="/public/css/style.css"
+    <h1>Goniometer</h1>
+  </head>
+  <body>
+    <form method="get" action="measure">
+      <div>
+        <input type="radio" id="static" name="type" value="static">
+        <label for="static">Static</label><br>
+        <input type="radio" id="dynamic" name="type" value="dynamic">
+        <label for="dynamic">Dynamic</label><br>
+      </div>
+      <input type="text" name="Name"/>
+      <button class="submit-button" type="submit">Get reading for patient</button>
+    </form>
+  </body>
+</html>

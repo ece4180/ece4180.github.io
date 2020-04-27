@@ -3,27 +3,14 @@ import time
 import Adafruit_ADS1x15
 import mysql.connector as mariadb
 import re
+from jinja2 import Environment, FileSystemLoader
+
+env = Environment(loader=FileSystemLoader('templates'))
 
 class Goniometer(object):
     @cherrypy.expose
     def index(self):
-        return """<html>
-            <head>
-                <h1>Goniometer</h1>
-            </head>
-            <body>
-                <form method="get" action="measure">
-                    <div>
-                        <input type="radio" id="static" name="type" value="static">
-                        <label for="static">Static</label><br>
-                        <input type="radio" id="dynamic" name="type" value="dynamic">
-                        <label for="dynamic">Dynamic</label><br>
-                    </div>
-                    <input type="text" name="Name"/>
-                    <button type="submit">Get reading for patient</button>
-                </form>
-            </body>
-        </html>"""
+        return open('index.html');
 
     @cherrypy.expose
     def measure(self, Name="Test Name", type="static"):
@@ -51,7 +38,12 @@ class Goniometer(object):
             print('The last inserted id was:', cursor.lastrowid)
             conn.close()
 
-        return "name: " + name + "reading:" + str(reading)
+        if (type == 'static'):
+            temp = env.get_template('static.html')
+            return temp.render(reading=reading)
+            
+        temp = env.get_template('dynamic.html')
+        return temp.render(readings=readings)
 
     @staticmethod
     def stable_reading():

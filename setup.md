@@ -63,9 +63,26 @@ sudo apt-get install libmariadbclient-dev
 pip install mysql-connector
 ```
 
+Finally, we need to grant permissions to a root user to use the database as root locally.
+```
+sudo mysql -u root -p
+{ login with password created above }
+```
+In the mariadb console run
+```
+GRANT ALL PRIVILEGES on *.* to 'root'@'localhost' IDENTIFIED BY '<password>';
+FLUSH PRIVILEGES;
+```
+then exit and restart mysql.
+```
+sudo service mysql restart
+```
+
 ### Linking to a webpage
 We will use the CherryPy framework for this.
-```sudo pip install cherrypy```
+```
+sudo pip install cherrypy
+```
 
 Import the library
 ```python
