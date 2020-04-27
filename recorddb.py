@@ -10,7 +10,7 @@ env = Environment(loader=FileSystemLoader('templates'))
 class Goniometer(object):
     @cherrypy.expose
     def index(self):
-        return open('index.html');
+        return open('templates/index.html');
 
     @cherrypy.expose
     def measure(self, Name="Test Name", type="static"):
