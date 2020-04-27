@@ -72,6 +72,23 @@ class Goniometer(object):
     def get_angle(x):
         return 49.9 + (219 * math.log10(x)) - 269 * (math.log10(x) ** 2)
 
+class HistoryPage(object):
+    @cherrypy.expose
+    def index(self):
+        temp = env.get_template('history.html');
+        try:
+            conn = mariadb.connection(user='root', password='4180', database='goniometer')
+            cursor = conn.cursor()
+            result = cursor.execute('''SELECT * FROM readings ORDER BY dtg LIMIT 20''')
+            print(result)
+        except mariadb.Error as error:
+            print('Error: {}'.format(error))
+        return temp.render()
+
+
+root = Goniometer()
+root.history = HistoryPage()
+
 if __name__ == '__main__':
     cherrypy.config.update({'server.socket_host': '192.168.1.148'})
-    cherrypy.quickstart(Goniometer())
+    cherrypy.quickstart(root)

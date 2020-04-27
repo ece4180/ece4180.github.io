@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <h1>Previous Measurements</h1>
+  </head>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Angle</th>
+      <th>Recorded At</th>
+    </tr>
+  {% for entry in entries %}
+    <tr>
+      <td>{{ entry.name }}</td>
+      <td>{{ entry.angle }}</td>
+      <td>{{ entry.dtg }}</td>
+    </tr>
+  {% endfor %}
+  </table>
+</html>
