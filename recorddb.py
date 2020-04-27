@@ -40,10 +40,10 @@ class Goniometer(object):
 
         if (type == 'static'):
             temp = env.get_template('static.html')
-            return temp.render(reading=reading)
-            
+            return temp.render(Name=Name, reading=reading)
+
         temp = env.get_template('dynamic.html')
-        return temp.render(readings=readings)
+        return temp.render(Name=Name, readings=readings)
 
     @staticmethod
     def stable_reading():
