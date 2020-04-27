@@ -6,17 +6,13 @@
         font-family: 'Roboto';
       }
 
-      .content {
-        background-color: #E8E0D6;
-      }
-
       .header {
         background-color: #203152;
-        color: #E8E0D6;
+        color: #fff;
       }
 
       .header-item {
-        color: #E8E0D6;
+        color: #fff;
         padding: 20px 10px;
         text-decoration: none;
       }
@@ -30,11 +26,9 @@
       </span>
     </div>
   </head>
-  <div class="content">
-    <h2>Dynamic Goniometer readings for {{ Name }}</h2>
-    <p>Readings</p>
-    {% for reading in readings %}
-      <li>{{ reading }}</li>
-    {% endfor %}
-  </div>
+  <h2>Dynamic Goniometer readings for {{ Name }}</h2>
+  <p>Readings</p>
+  {% for reading in readings %}
+    <li>{{ reading }}</li>
+  {% endfor %}
 </html>

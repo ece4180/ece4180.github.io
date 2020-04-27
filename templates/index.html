@@ -8,17 +8,13 @@
         font-family: 'Roboto';
       }
 
-      .content {
-        background-color: #E8E0D6;
-      }
-
       .header {
         background-color: #203152;
-        color: #E8E0D6;
+        color: #fff;
       }
 
       .header-item {
-        color: #E8E0D6;
+        color: #fff;
         padding: 20px 10px;
         text-decoration: none;
       }
@@ -93,23 +89,21 @@
       </span>
     </div>
   </head>
-  <div class="content">
-    <body>
-      <form method="get" action="measure">
-        <div>
-          <label for="static" class="container">Static
-            <input type="radio" id="static" name="type" value="static">
-            <span class="checkmark"></span>
-          </label><br>
+  <body>
+    <form method="get" action="measure">
+      <div>
+        <label for="static" class="container">Static
+          <input type="radio" id="static" name="type" value="static">
+          <span class="checkmark"></span>
+        </label><br>
 
-          <label for="dynamic" class="container">Dynamic
-            <input type="radio" id="dynamic" name="type" value="dynamic">
-            <span class="checkmark"></span>
-          </label><br>
-        </div>
-        <input type="text" name="Name"/>
-        <button class="submit-button" type="submit">Get reading for patient</button>
-      </form>
-    </body>
-  </div>
+        <label for="dynamic" class="container">Dynamic
+          <input type="radio" id="dynamic" name="type" value="dynamic">
+          <span class="checkmark"></span>
+        </label><br>
+      </div>
+      <input type="text" name="Name"/>
+      <button class="submit-button" type="submit">Get reading for patient</button>
+    </form>
+  </body>
 </html>

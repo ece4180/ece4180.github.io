@@ -7,17 +7,13 @@
         font-family: 'Roboto';
       }
 
-      .content {
-        background-color: #E8E0D6;
-      }
-
       .header {
         background-color: #203152;
-        color: #E8E0D6;
+        color: #fff;
       }
 
       .header-item {
-        color: #E8E0D6;
+        color: #fff;
         padding: 20px 10px;
         text-decoration: none;
       }
@@ -36,13 +32,11 @@
       </span>
     </div>
   </head>
-  <div class="content">
-    <h2>Static Goniometer reading for {{ Name }}</h2>
-    <p>{{ reading }} degrees</p>
-    <form method="get" action="measure">
-      <input type="radio" name="type" id="static" value="static" />
-      <input type="text" name="Name" id="Name" value="{{ Name }}" />
-      <button type="submit">Record another measurement</button>
-    </form>
-  </div>
+  <h2>Static Goniometer reading for {{ Name }}</h2>
+  <p>{{ reading }} degrees</p>
+  <form method="get" action="measure">
+    <input type="radio" name="type" id="static" value="static" />
+    <input type="text" name="Name" id="Name" value="{{ Name }}" />
+    <button type="submit">Record another measurement</button>
+  </form>
 </html>
