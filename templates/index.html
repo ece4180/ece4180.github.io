@@ -6,20 +6,18 @@
     <style>
       * {
         font-family: 'Roboto';
-        background-color: #203152;
+        background-color: #E8E0D6;
       }
 
       .header {
-        background-color: #1C221F;
-      }
-
-      .header-item {
         background-color: #203152;
         color: #E8E0D6;
       }
 
-      .header-item:active {
-        background-color: #397EC0;
+      .header-item {
+        color: #E8E0D6;
+        padding: 20px 10px;
+        text-decoration: none;
       }
 
       button {
@@ -30,6 +28,8 @@
 
       .container {
         display: "block";
+        padding-left: 20px;
+        margin-bottom: 10px;
         position: relative;
         cursor: pointer;
         user-select: none;
@@ -82,11 +82,13 @@
         background: #E8E0D6;
       }
     </style>
-    <h1>Goniometer</h1>
-    <span class="header">
-      <a class="header-item" href="/history">Previous Measurements</a>
-      <a class="header-item" href="/">Measure</a>
-    </span>
+    <div class="header">
+      <h1>Goniometer</h1>
+      <span>
+        <a class="header-item" href="/history">Previous Measurements</a>
+        <a class="header-item" href="/">Measure</a>
+      </span>
+    </div>
   </head>
   <body>
     <form method="get" action="measure">
