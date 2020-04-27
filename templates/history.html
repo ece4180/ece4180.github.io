@@ -4,7 +4,21 @@
     <style>
       * {
         font-family: 'Roboto';
-        background-color: "#E8E0D6";
+        background-color: #E8E0D6;
+      }
+
+      .header {
+        background-color: #1C221F;
+      }
+
+      .header-item {
+        background-color: #203152;
+        color: #E8E0D6;
+        text-decoration: none;
+      }
+
+      .header-item:active {
+        background-color: #397EC0;
       }
 
       table {
@@ -13,7 +27,7 @@
 
       th {
         padding: 15px;
-        background-color: "#275b82";
+        background-color: #275b82;
       }
 
       td {
@@ -21,9 +35,9 @@
       }
     </style>
     <h1>Goniometer</h1>
-    <span>
-      <a href="/history">Previous Measurements</a>
-      <a href="/">Measure</a>
+    <span class="header">
+      <a class="header-item" href="/history">Previous Measurements</a>
+      <a class="header-item" href="/">Measure</a>
     </span>
   </head>
   <h2>Previous Measurements</h2>
