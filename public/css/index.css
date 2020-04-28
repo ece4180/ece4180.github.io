@@ -32,7 +32,7 @@
 
 /* On mouse over change bg color */
 .container:hover input ~ .checkmark {
-  background-color: #828C94;
+  background-color: #dedede;
 }
 
 /* add bg when radio button is checked */

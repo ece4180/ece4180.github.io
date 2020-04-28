@@ -74,19 +74,28 @@ class Goniometer(object):
 
 class HistoryPage(object):
     @cherrypy.expose
-    def index(self, patient_name=None):
+    def index(self):
         temp = env.get_template('history.html');
         try:
             conn = mariadb.connect(user='root', password='4180', database='goniometer')
             cursor = conn.cursor()
-            if patient_name == None:
-                cursor.execute('''SELECT * FROM readings ORDER BY dtg DESC LIMIT 20''')
-            else:
-                cursor.execute('''SELECT * FROM readings WHERE name=%s ORDER BY dtg DESC''', patient_name);
+            cursor.execute('''SELECT * FROM readings ORDER BY dtg DESC LIMIT 20''')
             return temp.render(entries=cursor)
         except mariadb.Error as error:
             print('Error: {}'.format(error))
-        return temp.render(cursor)
+        return temp.render()
+
+    @cherrypy.export
+    def find_by_name(self, patient_name):
+        temp = env.get_template('history.html');
+        try:
+            conn = mariadb.connect(user='root', password='4180', database='goniometer')
+            cursor = conn.cursor()
+            cursor.execute('''SELECT * FROM readings WHERE name=%s ORDER BY dtg DESC''', patient_name);
+            return temp.render(entries=cursor)
+        except mariadb.Error as error:
+            print('Error: {}'.format(error))
+        return temp.render()
 
 
 root = Goniometer()
