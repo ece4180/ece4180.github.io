@@ -79,9 +79,16 @@ sudo service mysql restart
 ```
 
 ### Linking to a webpage
-We will use the CherryPy framework for this.
+We will use the CherryPy framework for this with Jinja2 for HTML templating.
 ```
-sudo pip install cherrypy
+sudo pip3 install cherrypy
+pip3 install jinja2
+```
+
+We will also need matplotlib and a raspbian dependency for graphing dynamic goniometer measurements.
+```
+pip3 install matplotlib
+sudo apt-get install libatlas-base-dev
 ```
 
 Import the library

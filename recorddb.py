@@ -49,20 +49,20 @@ class Goniometer(object):
         time, readings = Goniometer.dynamic_reading()
         fig, ax = plt.subplots()
         ax.plot(time, readings)
-        ax.set(xlabel='Time (s)', ylabel='Goniometer reading (degrees)', title='Dynamic goniometer reading for %s'.format(Name))
+        ax.set(xlabel='Time (s)', ylabel='Goniometer reading (degrees)')
         ax.grid()
         fig.savefig("public/images/dynamic_reading.png")
         temp = env.get_template('dynamic.html')
-        return temp.render(Name=Name, graph=readings)
+        return temp.render(Name=Name, max_angle=max(readings))
 
     @staticmethod
     def stable_reading():
         adc = Adafruit_ADS1x15.ADS1115()
         readings = list()
-        for i in range(10):
+        for i in range(100):
             reading = adc.read_adc(0, gain=1)
             readings.append(reading)
-            time.sleep(0.125)
+            time.sleep(0.0125)
         return Goniometer.get_angle(sum(readings) / len(readings))
 
     @staticmethod
@@ -72,8 +72,11 @@ class Goniometer(object):
         # for 6.25 seconds
         t = np.arange(0, 6.25, 0.03125)
         for i in range(200):
-            reading = adc.read_adc(0, gain=1)
-            readings.append(Goniometer.get_angle(reading))
+            _readings = list()
+            for i in range(10):
+                reading = adc.read_adc(0, gain=1)
+                _readings.append(reading)
+            readings.append(Goniometer.get_angle(sum(_readings) / len(_readings)))
             time.sleep(0.03125)
 
         return t, readings
