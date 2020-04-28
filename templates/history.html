@@ -30,22 +30,29 @@
         width: 100%;
       }
 
+      tr:nth-child(even) {
+        background-color: #efefef;
+      }
+
       th {
         padding: 15px;
         background-color: #397EC0;
         color: #fff;
         font-weight: bold;
+        margin: 0px;
       }
 
       td {
         padding: 15px;
       }
     </style>
-    <h1>Goniometer</h1>
-    <span class="header">
-      <a class="header-item" href="/history">Previous Measurements</a>
-      <a class="header-item" href="/">Measure</a>
-    </span>
+    <div class="header">
+      <h1>Goniometer</h1>
+      <span>
+        <a class="header-item" href="/history">Previous Measurements</a>
+        <a class="header-item" href="/">Measure</a>
+      </span>
+    </div>
   </head>
   <div class="content">
     <h2>Previous Measurements</h2>

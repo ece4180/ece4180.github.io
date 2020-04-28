@@ -64,7 +64,7 @@ class Goniometer(object):
         # for 6.25 seconds
         for i in range(200):
             reading = adc.read_adc(0, gain=1)
-            readings.append(get_angle(reading))
+            readings.append(Goniometer.get_angle(reading))
             time.sleep(0.03125)
         return readings
 
