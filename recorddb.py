@@ -4,6 +4,7 @@ import Adafruit_ADS1x15
 import mysql.connector as mariadb
 import re
 import math
+import os
 from jinja2 import Environment, FileSystemLoader
 
 env = Environment(loader=FileSystemLoader('templates'))
@@ -70,7 +71,7 @@ class Goniometer(object):
 
     @staticmethod
     def get_angle(x):
-        return 18.8 - (0.233x) - (1.06e-3 * (x ** 2)) + (1.5e-5 * (x ** 3))
+        return 90.2 - (8.71*x) + (0.428 * (x ** 2)) - (0.0118 * (x ** 3))
 
 class HistoryPage(object):
     @cherrypy.expose
@@ -85,13 +86,13 @@ class HistoryPage(object):
             print('Error: {}'.format(error))
         return temp.render()
 
-    @cherrypy.export
+    @cherrypy.expose
     def find_by_name(self, patient_name):
         temp = env.get_template('history.html');
         try:
             conn = mariadb.connect(user='root', password='4180', database='goniometer')
             cursor = conn.cursor()
-            cursor.execute('''SELECT * FROM readings WHERE name=%s ORDER BY dtg DESC''', patient_name);
+            cursor.execute('''SELECT * FROM readings WHERE name=%s ORDER BY dtg DESC''', (patient_name,));
             return temp.render(entries=cursor)
         except mariadb.Error as error:
             print('Error: {}'.format(error))
@@ -106,11 +107,11 @@ if __name__ == '__main__':
         '/': {
             'tools.sessions.on': True,
             'tools.staticdir.root': os.path.abspath(os.getcwd()),
-            'server.socket_host': '192.168.1.148'
         },
         '/static': {
             'tools.staticdir.on': True,
             'tools.staticdir.dir': './public'
         }
     }
+    cherrypy.config.update({'server.socket_host': '192.168.1.148'})
     cherrypy.quickstart(root, '/', conf)
