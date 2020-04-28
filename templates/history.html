@@ -15,9 +15,10 @@
   <div class="content">
     <h2>Previous Measurements</h2>
     <span class="search-bar">
-      <label for="search-bar" id="search-bar">Search by name</label>
-      <input type="text" name="search-bar" />
-      <button for=
+      <form method="get" action="index">
+        <label for="patient_name" id="patient_name">Search by name</label>
+        <input type="text" id="patient_name" name="patient_name" />
+        <button type="submit">Search</button>
     </span>
     <table>
       <tr>
