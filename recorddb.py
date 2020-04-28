@@ -70,7 +70,7 @@ class Goniometer(object):
 
     @staticmethod
     def get_angle(x):
-        return 49.9 + (219 * math.log10(x)) - 269 * (math.log10(x) ** 2)
+        return 18.8 - (0.233x) - (1.06e-3 * (x ** 2)) + (1.5e-5 * (x ** 3))
 
 class HistoryPage(object):
     @cherrypy.expose
