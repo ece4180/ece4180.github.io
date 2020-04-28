@@ -93,5 +93,15 @@ root = Goniometer()
 root.history = HistoryPage()
 
 if __name__ == '__main__':
-    cherrypy.config.update({'server.socket_host': '192.168.1.148'})
-    cherrypy.quickstart(root)
+    conf = {
+        '/': {
+            'tools.sessions.on': True,
+            'tools.staticdir.root': os.path.abspath(os.getcwd())
+        },
+        '/static': {
+            'tools.staticdir.on': True,
+            'tools.staticdir.dir': './public'
+        },
+        'server.socket_host': '192.168.1.148'
+    }
+    cherrypy.quickstart(root, '/', conf)
