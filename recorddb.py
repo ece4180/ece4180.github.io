@@ -5,6 +5,8 @@ import mysql.connector as mariadb
 import re
 import math
 import os
+import matplotlib
+import matplotlib.pyplot as plt
 from jinja2 import Environment, FileSystemLoader
 
 env = Environment(loader=FileSystemLoader('templates'))
@@ -22,31 +24,35 @@ class Goniometer(object):
         pattern = re.compile("[a-z ]+")
         if not pattern.fullmatch(name):
             return "Use only letters and spaces"
-        reading = Goniometer.stable_reading() if type == "static" else Goniometer.dynamic_reading()
-        dtg = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
-        print('Local current time:', dtg)
-        print('flex value:', reading)
+        if type == "static":
+            reading = Goniometer.stable_reading()
+            dtg = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+            print('Local current time:', dtg)
+            print('flex value:', reading)
 
-        try:
-            # open the connection and execute query
-            conn = mariadb.connect(user='root', password='4180', database='goniometer')
-            cursor = conn.cursor()
-            cursor.execute('''INSERT INTO readings(dtg, angle, name) VALUES(%s,%s,%s)''', (dtg,reading,name))
-            # commit change
-            conn.commit()
-        except mariadb.Error as error:
-            print('Error: {}'.format(error))
-        finally:
-            # close connection
-            print('The last inserted id was:', cursor.lastrowid)
-            conn.close()
-
-        if (type == 'static'):
+            try:
+                # open the connection and execute query
+                conn = mariadb.connect(user='root', password='4180', database='goniometer')
+                cursor = conn.cursor()
+                cursor.execute('''INSERT INTO readings(dtg, angle, name) VALUES(%s,%s,%s)''', (dtg,reading,name))
+                # commit change
+                conn.commit()
+            except mariadb.Error as error:
+                print('Error: {}'.format(error))
+            finally:
+                # close connection
+                print('The last inserted id was:', cursor.lastrowid)
+                conn.close()
             temp = env.get_template('static.html')
             return temp.render(Name=Name, reading=reading)
-
+        time, readings = Goniometer.dynamic_reading()
+        fig, ax = plt.subplots()
+        ax.plot(t, readings)
+        ax.set(xlabel='Time (s)', ylabel='Goniometer reading (degrees)', title='Dynamic goniometer reading for %s'.format(Name))
+        ax.grid()
+        fig.savefig("public/images/dynamic_reading.png")
         temp = env.get_template('dynamic.html')
-        return temp.render(Name=Name, readings=readings)
+        return temp.render(Name=Name, graph=readings)
 
     @staticmethod
     def stable_reading():
@@ -63,11 +69,13 @@ class Goniometer(object):
         adc = Adafruit_ADS1x15.ADS1115()
         readings = list()
         # for 6.25 seconds
+        t = range(0, 6.25, 0.03125)
         for i in range(200):
             reading = adc.read_adc(0, gain=1)
             readings.append(Goniometer.get_angle(reading))
             time.sleep(0.03125)
-        return readings
+
+        return t, readings
 
     @staticmethod
     def get_angle(x):
@@ -106,7 +114,7 @@ if __name__ == '__main__':
     conf = {
         '/': {
             'tools.sessions.on': True,
-            'tools.staticdir.root': os.path.abspath(os.getcwd()),
+            'tools.staticdir.root': os.path.abspath(os.getcwd())
         },
         '/static': {
             'tools.staticdir.on': True,
