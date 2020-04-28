@@ -14,18 +14,15 @@ body {
   background-color: #203152;
   color: #fff;
   margin
-  padding: 8px;
-  padding-bottom: 20px;
+  padding: 20px;
 }
 
 .header h1 {
-  padding: 0px 20px;
   font-weight: bold;
 }
 
 .header-item {
   color: #fff;
-  padding-left: 20px;
   padding-right: 40px;
   text-decoration: none;
 }
@@ -34,6 +31,7 @@ button {
   border: none;
   padding: 15px 32px;
   background-color: #639ECB;
+  color: #efefef;
   font-size: 20px;
   font-weight: bold;
 }

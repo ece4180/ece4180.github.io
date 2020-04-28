@@ -1,8 +1,12 @@
+.name-container {
+  display: block;
+  margin-bottom: 15px;
+}
 .container {
-  display: "block";
+  display: block;
   height: 25px;
   padding-left: 35px;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   position: relative;
   cursor: pointer;
   user-select: none;

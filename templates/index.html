@@ -15,6 +15,10 @@
   </head>
   <div class="content">
     <form method="get" action="measure">
+      <div class="name-container">
+        <label for="Name">Patient Name</label>
+        <input type="text" id="Name" name="Name"/>
+      </div>
       <span>
         <label for="static" class="container">Static
           <input type="radio" id="static" name="type" value="static">
@@ -26,10 +30,6 @@
           <span class="checkmark"></span>
         </label><br>
       </span>
-      <div>
-        <label for="Name">Patient Name</label>
-        <input type="text" id="Name" name="Name"/>
-      </div>
       <button class="submit-button" type="submit">Measure</button>
     </form>
   </div>
