@@ -7,6 +7,7 @@ import math
 import os
 import matplotlib
 import matplotlib.pyplot as plt
+import numpy as np
 from jinja2 import Environment, FileSystemLoader
 
 env = Environment(loader=FileSystemLoader('templates'))
@@ -47,7 +48,7 @@ class Goniometer(object):
             return temp.render(Name=Name, reading=reading)
         time, readings = Goniometer.dynamic_reading()
         fig, ax = plt.subplots()
-        ax.plot(t, readings)
+        ax.plot(time, readings)
         ax.set(xlabel='Time (s)', ylabel='Goniometer reading (degrees)', title='Dynamic goniometer reading for %s'.format(Name))
         ax.grid()
         fig.savefig("public/images/dynamic_reading.png")
@@ -69,7 +70,7 @@ class Goniometer(object):
         adc = Adafruit_ADS1x15.ADS1115()
         readings = list()
         # for 6.25 seconds
-        t = range(0, 6.25, 0.03125)
+        t = np.arange(0, 6.25, 0.03125)
         for i in range(200):
             reading = adc.read_adc(0, gain=1)
             readings.append(Goniometer.get_angle(reading))
