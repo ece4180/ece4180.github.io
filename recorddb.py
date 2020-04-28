@@ -79,7 +79,7 @@ class HistoryPage(object):
         try:
             conn = mariadb.connect(user='root', password='4180', database='goniometer')
             cursor = conn.cursor()
-            if patient_name != None:
+            if patient_name == None:
                 cursor.execute('''SELECT * FROM readings ORDER BY dtg DESC LIMIT 20''')
             else:
                 cursor.execute('''SELECT * FROM readings WHERE name=%s ORDER BY dtg DESC''', patient_name);

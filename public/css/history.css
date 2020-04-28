@@ -2,7 +2,7 @@ table {
   width: 100%;
 }
 
-table, th, td {
+table, td {
   border: none;
 }
 
@@ -17,8 +17,18 @@ th, td {
 }
 
 th {
-  background-color: #397EC0;
+  background-color: #828C94;
   color: #fff;
   font-weight: bold;
   margin: 0px;
+  border: 2px solid #828C94;
+}
+
+.search-button {
+  font-size: 14px;
+  padding-left: 15px;
+}
+
+form {
+  padding-bottom: 20px;
 }
