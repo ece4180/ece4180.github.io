@@ -15,16 +15,18 @@ body {
   color: #fff;
   margin
   padding: 8px;
+  padding-bottom: 20px;
 }
 
 .header h1 {
-  padding: 20px;
+  padding: 0px 20px;
+  font-weight: bold;
 }
 
 .header-item {
   color: #fff;
   padding-left: 20px;
-  padding-bottom: 30px;
+  padding-right: 40px;
   text-decoration: none;
 }
 
@@ -39,62 +41,6 @@ button {
 form {
   padding-top: 15px;
   display: block;
-}
-
-.container {
-  display: "block";
-  padding-left: 35px;
-  margin-bottom: 30px;
-  position: relative;
-  cursor: pointer;
-  user-select: none;
-}
-
-.container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #efefef;
-  border-radius: 50%;
-}
-
-/* On mouse over change bg color */
-.container:hover input ~ .checkmark {
-  background-color: #828C94;
-}
-
-/* add bg when radio button is checked */
-.container input:checked ~ .checkmark {
-  background-color: #639ECB;
-}
-
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-.container input:checked ~ .checkmark:after {
-  display: block;
-}
-
-.container .checkmark:after {
-  top: 9px;
-  left: 9px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #fff;
 }
 
 input[type='text'] {
