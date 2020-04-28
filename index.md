@@ -37,7 +37,64 @@ The following are the components used to built this project:
 If your raspberry pi has not been set up with the correct libraries, please see [how to setup the rpi.](/setup.md)
 
 ---
-*Explantion of Code*
+**Running the application**
+
+We are using CherryPy and Jinja2 to create a web application that can will display static, dynamic, and previous goniometer readings.
+
+The application is broken into two parts, the goniometer class to take static and dynamic readings (in `goniometer.py`) and the history class to display previous static measurements (in `history.py`).
+
+In `app.py`, we combine the goniometer and history classes, with the goniometer as the root of the application.
+```
+root = Goniometer()
+root.history = HistoryPage()
+```
+We then set the application to run on the Raspberry Pi's IP address so other computers on the same network can access the application.
+```
+cherrypy.config.update({'server.socket_host': '192.168.1.148'})
+```
+To run the application, we can just run the `app.py` file on the Raspberry Pi.
+```
+python3 app.py
+```
+And we can access the application by going to http://192.168.1.148:8080 in a browser on any computer connected to the same network as the Pi.
+Please see [here](https://github.com/ece4180/ece4180.github.io/blob/master/app.py) for full code.
+
+**Explanation of the code**
+
+*Goniometer*
+
+The goniometer can take two kinds of measurements, a static reading and a dynamic reading.
+The static reading takes 100 samples and averages the readings from the flex sensor and the ADC to give one reading which is then converted to an angle using an equation from calibrating the goniometer.
+```
+for i in range(100):
+      reading = adc.read_adc(0, gain=1)
+      readings.append(reading)
+      time.sleep(0.0125)
+```
+To calibrate the goniometer we recorded the flex sensor reading at different angles, then graphed flex sensor reading vs. angle and generated a trendline for the data.
+{{ insert image of graph after calibration }}
+The web application then redirects to the static reading display page which shows the static reading as well as gives an option to take another reading without going back to the home page.
+{{ insert image of static reading page }}
+
+The dynamic reading takes 10 readings of the flex sensor then averages them for a stable reading and does this 200 times, reading the flex sensor for a total of 6.25 seconds.
+```
+for i in range(200):
+      _readings = list()
+      for i in range(10):
+          reading = adc.read_adc(0, gain=1)
+          _readings.append(reading)
+      readings.append(Goniometer.get_angle(sum(_readings) / len(_readings)))
+      time.sleep(0.03125)
+```
+The web application then redirects to the dynamic reading display page, which shows the maximum angle reached as well as a graph of the goniometer reading vs. time.
+{{ insert picture of dynamic reading page here }}
+
+Full measurement code can be found [here](https://github.com/ece4180/ece4180.github.io/blob/master/recordadc.py) and web application code for the goniometer portion can be found [here](https://github.com/ece4180/ece4180.github.io/blob/master/goniometer.py)
+
+
+
+### Running as a script
+
 To script the reading of the flex sensor, we can use a [Common Gateway Interface](https://en.wikipedia.org/wiki/Common_Gateway_Interface) dynamic page written in python.
 We need to write the script in the ```/usr/lib/cgi-bin``` directory.
 Firstly, we need to identify that it is a python script and import the relevant libraries.
