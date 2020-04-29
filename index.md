@@ -71,10 +71,12 @@ for i in range(100):
       readings.append(reading)
       time.sleep(0.0125)
 ```
-To calibrate the goniometer we recorded the flex sensor reading at different angles, then graphed flex sensor reading vs. angle and generated a trendline for the data.
-![goniometer calibration graph](https://github.com/ece4180/ece4180.github.io/blob/master/public/images/calibration_graph.png)
+
+To calibrate the goniometer so that we can calculate an angle from the flex sensor reading, we recorded the flex sensor reading at different angles, then graphed flex sensor reading vs. angle and generated a trendline for the data.
+![goniometer calibration graph](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/calibration_graph.png)
+
 The web application then redirects to the static reading display page which shows the static reading as well as gives an option to take another reading without going back to the home page.
-![static reading page](https://github.com/ece4180/ece4180.github.io/blob/master/public/images/static_measure_page.png)
+![static reading page](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/static_measure_page.png)
 
 The dynamic reading takes 10 readings of the flex sensor then averages them for a stable reading and does this 200 times, reading the flex sensor for a total of 6.25 seconds.
 ```
@@ -87,7 +89,7 @@ for i in range(200):
       time.sleep(0.03125)
 ```
 The web application then redirects to the dynamic reading display page, which shows the maximum angle reached as well as a graph of the goniometer reading vs. time.
-![dynamic reading webpage](https://github.com/ece4180/ece4180.github.io/blob/master/public/images/dynamic_measure_page.png)
+![dynamic reading webpage](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/dynamic_measure_page.png)
 
 Full measurement code can be found [here](https://github.com/ece4180/ece4180.github.io/blob/master/recordadc.py) and web application code for the goniometer portion can be found [here](https://github.com/ece4180/ece4180.github.io/blob/master/goniometer.py)
 
@@ -98,12 +100,12 @@ The history page makes a mysql query for the 20 most recent static measurements 
 cursor.execute('''SELECT * FROM readings ORDER BY dtg DESC LIMIT 20''')
 ```
 then displays the measurements in a table.
-![history page](https://github.com/ece4180/ece4180.github.io/blob/master/public/images/history_page.png)
+![history page](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/history_page.png)
 
 We can also use the search bar to search for records by patient name. This makes another mysql query for the 20 most recent static measurements taken on that patient.
 ```
 cursor.execute('''SELECT * FROM readings WHERE name=%s ORDER BY dtg DESC''', (patient_name,));
 ```
-![history page with name search](https://github.com/ece4180/ece4180.github.io/blob/master/public/images/history_name_search.png)
+![history page with name search](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/history_name_search.png)
 
-Full code for the history page can be found [here](https://github.com/ece4180/ece4180.github.io/blob/master/history.py)
+Full code for the history page can be found [here](https://github.com/ece4180/ece4180.github.io/raw/master/history.py)
