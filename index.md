@@ -72,9 +72,9 @@ for i in range(100):
       time.sleep(0.0125)
 ```
 To calibrate the goniometer we recorded the flex sensor reading at different angles, then graphed flex sensor reading vs. angle and generated a trendline for the data.
-{{ insert image of graph after calibration }}
+![goniometer calibration graph](https://github.com/ece4180/ece4180.github.io/blob/master/public/images/calibration_graph.png)
 The web application then redirects to the static reading display page which shows the static reading as well as gives an option to take another reading without going back to the home page.
-{{ insert image of static reading page }}
+![static reading page](https://github.com/ece4180/ece4180.github.io/blob/master/public/images/static_measure_page.png)
 
 The dynamic reading takes 10 readings of the flex sensor then averages them for a stable reading and does this 200 times, reading the flex sensor for a total of 6.25 seconds.
 ```
@@ -87,61 +87,23 @@ for i in range(200):
       time.sleep(0.03125)
 ```
 The web application then redirects to the dynamic reading display page, which shows the maximum angle reached as well as a graph of the goniometer reading vs. time.
-{{ insert picture of dynamic reading page here }}
+![dynamic reading webpage](https://github.com/ece4180/ece4180.github.io/blob/master/public/images/dynamic_measure_page.png)
 
 Full measurement code can be found [here](https://github.com/ece4180/ece4180.github.io/blob/master/recordadc.py) and web application code for the goniometer portion can be found [here](https://github.com/ece4180/ece4180.github.io/blob/master/goniometer.py)
 
+*History Page*
 
-
-### Running as a script
-
-To script the reading of the flex sensor, we can use a [Common Gateway Interface](https://en.wikipedia.org/wiki/Common_Gateway_Interface) dynamic page written in python.
-We need to write the script in the ```/usr/lib/cgi-bin``` directory.
-Firstly, we need to identify that it is a python script and import the relevant libraries.
+The history page makes a mysql query for the 20 most recent static measurements in the database
 ```
-#!/usr/bin/python
-import time
-import Adafruit_ADS1x15
+cursor.execute('''SELECT * FROM readings ORDER BY dtg DESC LIMIT 20''')
 ```
+then displays the measurements in a table.
+![history page](https://github.com/ece4180/ece4180.github.io/blob/master/public/images/history_page.png)
 
-We then initialise the ADC component and take a reading
+We can also use the search bar to search for records by patient name. This makes another mysql query for the 20 most recent static measurements taken on that patient.
 ```
-adc = Adafruit_ADS1x15.ADS1115()
-reading = adc.read_adc(0, gain=1)
+cursor.execute('''SELECT * FROM readings WHERE name=%s ORDER BY dtg DESC''', (patient_name,));
 ```
+![history page with name search](https://github.com/ece4180/ece4180.github.io/blob/master/public/images/history_name_search.png)
 
-We can then transform the reading into the relative angle using
-```
-
-```
-
-Finally, we read the current time and print the webpage
-```
-print 'Content-Type: text/html'
-print ''
-print '<html>'
-print '<head>'
-print '<title>Goniometer</title>'
-print '</head>'
-print '<body>'
-print '<h2>Current Flex Sensor Info</h2>'
-print 'ADC reading:', reading, '<br />'
-print 'Current time:', dtg, '<br />'
-print 'The angle is:', 'degrees'
-print '</body>'
-print '</html>'
-```
-
-To see the full code refer to [this](https://github.com/ece4180/ece4180.github.io/blob/master/recordadc.cgi).
-
-We also need to enable cgi, make it executable and restart our webserver.
-```
-sudo a2enmod cgi
-sudo chmod +x /usr/lib/cgi-bin/recordadc.cgi
-systemctl restart apache2
-```
-
-The readings should now be avaliable at ```[ip address]/cgi-bin/recordadc.cgi``` on the same network.
-
-### If we want readings to be saved we can use a mysql db
-Please see [here](/setup.md#optional-database) for full instructions.
+Full code for the history page can be found [here](https://github.com/ece4180/ece4180.github.io/blob/master/history.py)
