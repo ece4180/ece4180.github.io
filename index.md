@@ -76,7 +76,7 @@ To calibrate the goniometer so that we can calculate an angle from the flex sens
 ![goniometer calibration graph](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/calibration_graph.png)
 
 The web application then redirects to the static reading display page which shows the static reading as well as gives an option to take another reading without going back to the home page.
-![static reading page](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/static_reading.png)
+![static reading page](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/static_screenshot.png)
 
 The dynamic reading takes 10 readings of the flex sensor then averages them for a stable reading and does this 200 times, reading the flex sensor for a total of 6.25 seconds.
 ```
