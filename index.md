@@ -19,7 +19,6 @@ Currently, there is a physical/analog goniometer which only take static measurem
 
 ### Demonstration
 
-*Insert Video Demonstration Here*
 {% include youtube.html id=page.youtubeId %}
 
 ### Components
