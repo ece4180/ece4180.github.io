@@ -1,2 +1,3 @@
 name: ECE4180 Project
 markdown: kramdown
+theme: jekyll-theme-architect
