@@ -29,10 +29,12 @@ The following are the components used to built this project:
 * [Raspberry Pi Zero](https://www.sparkfun.com/products/14277)
 * [ADC Convertor](https://www.adafruit.com/product/1085)
 
+**Schematic**
+
 ![hardware architecture](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/schmetic.jpg)
 
 
-Software Architecture
+**Software Architecture**
 
 ![software architecture](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/software_architecture.png)
 
