@@ -26,8 +26,8 @@ Currently, there is a physical/analog goniometer which only take static measurem
 The following are the components used to built this project:
 * Goniometer
 * [Flex Sensor](https://os.mbed.com/components/Flex-Sensor/)
-* Raspberry Pi Zero
-* ADC Convertor
+* [Raspberry Pi Zero](https://www.sparkfun.com/products/14277)
+* [ADC Convertor](https://www.adafruit.com/product/1085)
 
 ### Main Program
 ---
