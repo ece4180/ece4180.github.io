@@ -11,11 +11,11 @@ youtubeId: UfDjUpE377k
 
 ### Introduction
 
-The IoT Goniometer is a device which uses a goniometer to measure a joint's function such as an elbow or a knee, based on their degree of movement. The measurements collected will then be uploaded to the internet using the Raspberry PI Zero.
+The IoT Goniometer is a device which uses a goniometer to measure a joint's function such as an elbow or a knee, based on their degree of movement. The measurements obtained will be uploaded to the internet using the Raspberry PI Zero.
 
 ### Motivation
 
-Currently, there is a physical/analog goniometer which only take static measurements of patients for doctors. However, the current method does not take into account the degree of movement when the patient is doing strenuous activities such as running. This project will help patients to have both their static and dynamic measurements taken while assisting doctors to automatically track their patients progress.
+Currently, physical/analog goniometer only take static measurements of patients for doctors. The method does not take into account the degree of movement when the patient is doing strenuous activities such as running. This project will help patients to have both their static and dynamic measurements taken while assisting doctors to automatically track their patients progress.
 
 ### Demonstration
 
@@ -29,7 +29,7 @@ The following are the components used to built this project:
 * [Raspberry Pi Zero](https://www.sparkfun.com/products/14277)
 * [ADC Convertor](https://www.adafruit.com/product/1085)
 
-![hardware architecture](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/schmetic.jpg.jpg)
+![hardware architecture](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/schmetic.jpg)
 
 
 Software Architecture
