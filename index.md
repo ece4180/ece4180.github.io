@@ -72,7 +72,9 @@ Please see [here](https://github.com/ece4180/ece4180.github.io/blob/master/app.p
 *Goniometer*
 
 The goniometer can take two kinds of measurements, a static reading and a dynamic reading, which we can select from in the main measure page of the application.
+
 ![static measure page](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/static_measure_page.png)
+
 The static reading takes 100 samples and averages the readings from the flex sensor and the ADC to give one reading which is then converted to an angle using an equation from calibrating the goniometer.
 ```
 for i in range(100):
@@ -82,7 +84,9 @@ for i in range(100):
 ```
 
 To calibrate the goniometer so that we can calculate an angle from the flex sensor reading, we recorded the flex sensor reading at different angles, then graphed flex sensor reading vs. angle and generated a trendline for the data.
+
 ![goniometer calibration graph](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/calibration_graph.png)
+
 
 The web application then redirects to the static reading display page which shows the static reading as well as gives an option to take another reading without going back to the home page.
 ![static reading page](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/static_screenshot.png)
@@ -98,7 +102,9 @@ for i in range(200):
       time.sleep(0.03125)
 ```
 The web application then redirects to the dynamic reading display page, which shows the maximum angle reached as well as a graph of the goniometer reading vs. time.
+
 ![dynamic reading webpage](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/dynamic_screenshot.png)
+
 
 Full measurement code can be found [here](https://github.com/ece4180/ece4180.github.io/blob/master/recordadc.py) and web application code for the goniometer portion can be found [here](https://github.com/ece4180/ece4180.github.io/blob/master/goniometer.py)
 
@@ -109,13 +115,16 @@ The history page makes a mysql query for the 20 most recent static measurements 
 cursor.execute('''SELECT * FROM readings ORDER BY dtg DESC LIMIT 20''')
 ```
 then displays the measurements in a table.
+
 ![history page](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/history_page.png)
+
 
 We can also use the search bar to search for records by patient name. This makes another mysql query for the 20 most recent static measurements taken on that patient.
 ```
 cursor.execute('''SELECT * FROM readings WHERE name=%s ORDER BY dtg DESC''', (patient_name,));
 ```
 ![history page with name search](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/history_name_search.png)
+
 
 ### References
 CherryPy Team, “Tutorial 4: Submit this form,” Tutorials. [Online]. Available: https://docs.cherrypy.org/en/latest/tutorials.html#tutorial-4-submit-this-form [Accessed: 17-Apr-2020].
