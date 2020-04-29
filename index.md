@@ -24,7 +24,7 @@ Currently, physical/analog goniometer only take static measurements of patients 
 ### Components
 
 The following are the components used to built this project:
-* Goniometer
+* [Goniometer](https://en.wikipedia.org/wiki/Goniometer)
 * [Flex Sensor](https://os.mbed.com/components/Flex-Sensor/)
 * [Raspberry Pi Zero](https://www.sparkfun.com/products/14277)
 * [ADC Convertor](https://www.adafruit.com/product/1085)
