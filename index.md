@@ -109,4 +109,13 @@ cursor.execute('''SELECT * FROM readings WHERE name=%s ORDER BY dtg DESC''', (pa
 ```
 ![history page with name search](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/history_name_search.png)
 
+### References
+CherryPy Team, “Tutorial 4: Submit this form,” Tutorials. [Online]. Available: https://docs.cherrypy.org/en/latest/tutorials.html#tutorial-4-submit-this-form [Accessed: 17-Apr-2020].
+
+Maclean, M. (2020). Raspberry Pi Computing: Analog Measurement. Retrieved from https://leanpub.com/rpcanalog/read#leanpub-auto-connecting-analog-sensors-to-the-raspberry-pi
+
+### Things to Note
+Python 2 for cherrypy will be retired in 4 months. The code in our project uses python 2 for print statements. Therefore, we will need to add parentheses to our print statements in 4 months time in order for the code to work.
+
+
 Full code for the history page can be found [here](https://github.com/ece4180/ece4180.github.io/raw/master/history.py)
