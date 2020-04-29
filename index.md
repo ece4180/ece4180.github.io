@@ -90,7 +90,7 @@ for i in range(200):
       time.sleep(0.03125)
 ```
 The web application then redirects to the dynamic reading display page, which shows the maximum angle reached as well as a graph of the goniometer reading vs. time.
-![dynamic reading webpage](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/dynamic_reading.png)
+![dynamic reading webpage](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/dynamic_screenshot.png)
 
 Full measurement code can be found [here](https://github.com/ece4180/ece4180.github.io/blob/master/recordadc.py) and web application code for the goniometer portion can be found [here](https://github.com/ece4180/ece4180.github.io/blob/master/goniometer.py)
 
