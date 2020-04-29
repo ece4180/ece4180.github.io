@@ -34,6 +34,9 @@ The following are the components used to built this project:
 
 ![hardware architecture](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/schmetic.jpg)
 
+**Hardware Setup**
+
+![hardware_setup](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/hardware_architecture.jpg)
 
 **Software Architecture**
 
