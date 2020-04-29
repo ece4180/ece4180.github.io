@@ -135,9 +135,8 @@ Maclean, M. (2020). Raspberry Pi Computing: Analog Measurement. Retrieved from h
 ### Things to Note
 Python 2 for cherrypy will be retired in 4 months. The code in our project uses python 2 for print statements. Therefore, we will need to add parentheses to our print statements in 4 months time in order for the code to work.
 
+Full code for the history page can be found [here](https://github.com/ece4180/ece4180.github.io/raw/master/history.py)
+
 ### Project Presentation
 
 {% include youtube.html id=page.presentationId %}
-
-
-Full code for the history page can be found [here](https://github.com/ece4180/ece4180.github.io/raw/master/history.py)
