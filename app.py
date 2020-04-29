@@ -1,10 +1,10 @@
 import cherrypy
 import os
-from .goniometer import Goniometer
-from .history import History
+from goniometer import Goniometer
+from history import History
 
 root = Goniometer()
-root.history = HistoryPage()
+root.history = History()
 
 if __name__ == '__main__':
     conf = {
