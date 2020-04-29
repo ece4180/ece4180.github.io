@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Roboto:bold" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="stylesheet" href="/static/css/history.css" />
+    <div class="header">
+      <title>Goniometer - Previous Measurements</title>
+      <h1>Goniometer</h1>
+      <span>
+        <a class="header-item" href="/history">Previous Measurements</a>
+        <a class="header-item" href="/">Measure</a>
+      </span>
+    </div>
+  </head>
+  <div class="content">
+    <h2>Previous Measurements</h2>
+    <span class="search-bar">
+      <form method="get" action="find_by_name">
+        <input type="text" id="patient_name" name="patient_name" />
+        <button class="search-button" type="submit">Search by name</button>
+      </form>
+    </span>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Angle</th>
+        <th>Recorded At</th>
+      </tr>
+    {% for dtg, angle, name in entries %}
+      <tr>
+        <td>{{ name }}</td>
+        <td>{{ angle }}</td>
+        <td>{{ dtg }}</td>
+      </tr>
+    {% endfor %}
+    </table>
+  </div>
+</html>

@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Roboto:bold" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <title>Goniometer - Dynamic Measurement</title>
+    <div class="header">
+      <h1>Goniometer</h1>
+      <span>
+        <a class="header-item" href="/history">Previous Measurements</a>
+        <a class="header-item" href="/">Measure</a>
+      </span>
+    </div>
+  </head>
+  <div class="content">
+    <h2>Dynamic Goniometer readings for {{ Name }}</h2>
+    <p>Max angle reached: {{ max_angle }}</p>
+    <img src="/static/images/dynamic_reading.png" />
+  </div>
+</html>

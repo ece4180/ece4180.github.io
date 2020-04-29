@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Roboto|Roboto:bold" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="stylesheet" href="/static/css/index.css" />
+    <div class="header">
+      <title>Goniometer</title>
+      <h1 class="title">Goniometer</h1>
+      <span>
+        <a class="header-item" href="/history">Previous Measurements</a>
+        <a class="header-item" href="/">Measure</a>
+      </span>
+    </div>
+  </head>
+  <div class="content">
+    <form method="get" action="measure">
+      <div class="name-container">
+        <label for="Name">Patient Name</label>
+        <input type="text" id="Name" name="Name"/>
+      </div>
+      <span>
+        <label for="static" class="container">Static
+          <input type="radio" id="static" name="type" value="static">
+          <span class="checkmark"></span>
+        </label><br>
+
+        <label for="dynamic" class="container">Dynamic
+          <input type="radio" id="dynamic" name="type" value="dynamic">
+          <span class="checkmark"></span>
+        </label><br>
+      </span>
+      <button type="submit">Measure</button>
+    </form>
+  </div>
+</html>

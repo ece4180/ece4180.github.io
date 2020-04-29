@@ -1,0 +1,47 @@
+* {
+  font-family: 'Roboto';
+}
+
+body {
+  margin: 0px;
+}
+
+.content {
+  margin: 8px;
+}
+
+.header {
+  background-color: #203152;
+  color: #fff;
+  padding: 20px;
+}
+
+.header h1 {
+  font-weight: bold;
+}
+
+.header-item {
+  color: #fff;
+  padding-right: 40px;
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  padding: 15px 32px;
+  background-color: #639ECB;
+  color: #efefef;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+form {
+  padding-top: 15px;
+  display: block;
+}
+
+input[type='text'] {
+  border: none;
+  background-color: #efefef;
+  padding: 12px;
+}

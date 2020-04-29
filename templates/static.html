@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Roboto|Roboto:bold" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <style>
+      input {
+        display: none;
+      }
+    </style>
+    <div class="header">
+      <title>Goniometer - Static Reading</title>
+      <h1>Goniometer</h1>
+      <span>
+        <a class="header-item" href="/history">Previous Measurements</a>
+        <a class="header-item" href="/">Measure</a>
+      </span>
+    </div>
+  </head>
+  <div class="content">
+    <h2>Static Goniometer reading for {{ Name }}</h2>
+    <p>{{ reading }} degrees</p>
+    <form method="get" action="measure">
+      <input type="radio" name="type" id="static" value="static" />
+      <input type="text" name="Name" id="Name" value="{{ Name }}" />
+      <button type="submit">Record another measurement</button>
+    </form>
+  </div>
+</html>
