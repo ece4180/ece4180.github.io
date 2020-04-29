@@ -4,8 +4,8 @@ import mysql.connector as mariadb
 import time
 from jinja2 import Environment, FileSystemLoader
 
-from .recordadc import stable_reading, dynamic_reading
-from .utils import get_angle, save_plot
+from recordadc import stable_reading, dynamic_reading
+from utils import get_angle, save_plot
 
 env = Environment(loader=FileSystemLoader('templates'))
 
@@ -43,9 +43,9 @@ class Goniometer(object):
                 conn.close()
             temp = env.get_template('static.html')
             return temp.render(Name=Name, reading=reading)
-        
-        time, readings = dynamic_reading()
-        save_plot(time, readings)
+
+        t, readings = dynamic_reading()
+        save_plot(t, readings)
         temp = env.get_template('dynamic.html')
         return temp.render(Name=Name, max_angle=max(readings))
 

@@ -1,9 +1,10 @@
+import cherrypy
 import mysql.connector as mariadb
 from jinja2 import Environment, FileSystemLoader
 
 env = Environment(loader=FileSystemLoader('templates'))
 
-class HistoryPage(object):
+class History(object):
     @cherrypy.expose
     def index(self):
         temp = env.get_template('history.html');

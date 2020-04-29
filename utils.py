@@ -2,7 +2,8 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 def get_angle(x):
-    return 90.2 - (8.71*x) + (0.428 * (x ** 2)) - (0.0118 * (x ** 3))
+    print('raw flex', x)
+    return 0.538*x - 16410
 
 def save_plot(time, readings):
     fig, ax = plt.subplots()
