@@ -33,6 +33,7 @@ The following are the components used to built this project:
 
 
 Software Architecture
+
 ![software architecture](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/software_architecture.png)
 
 ### Main Program
