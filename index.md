@@ -63,7 +63,8 @@ Please see [here](https://github.com/ece4180/ece4180.github.io/blob/master/app.p
 
 *Goniometer*
 
-The goniometer can take two kinds of measurements, a static reading and a dynamic reading.
+The goniometer can take two kinds of measurements, a static reading and a dynamic reading, which we can select from in the main measure page of the application.
+![static measure page](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/static_measure_page.png)
 The static reading takes 100 samples and averages the readings from the flex sensor and the ADC to give one reading which is then converted to an angle using an equation from calibrating the goniometer.
 ```
 for i in range(100):
@@ -76,7 +77,7 @@ To calibrate the goniometer so that we can calculate an angle from the flex sens
 ![goniometer calibration graph](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/calibration_graph.png)
 
 The web application then redirects to the static reading display page which shows the static reading as well as gives an option to take another reading without going back to the home page.
-![static reading page](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/static_measure_page.png)
+![static reading page](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/static_reading.png)
 
 The dynamic reading takes 10 readings of the flex sensor then averages them for a stable reading and does this 200 times, reading the flex sensor for a total of 6.25 seconds.
 ```
@@ -89,7 +90,7 @@ for i in range(200):
       time.sleep(0.03125)
 ```
 The web application then redirects to the dynamic reading display page, which shows the maximum angle reached as well as a graph of the goniometer reading vs. time.
-![dynamic reading webpage](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/dynamic_measure_page.png)
+![dynamic reading webpage](https://github.com/ece4180/ece4180.github.io/raw/master/public/images/dynamic_reading.png)
 
 Full measurement code can be found [here](https://github.com/ece4180/ece4180.github.io/blob/master/recordadc.py) and web application code for the goniometer portion can be found [here](https://github.com/ece4180/ece4180.github.io/blob/master/goniometer.py)
 
